@@ -7,14 +7,13 @@ buildscript {
         google()
         mavenCentral()
     }
-
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath 'com.android.tools.build:gradle:8.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
-rootProject.allprojects {
+allprojects {
     repositories {
         google()
         mavenCentral()
@@ -35,10 +34,21 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+
     defaultConfig {
-        minSdkVersion 16
+        minSdk 21 // Updated to a safer minimum for Flutter plugins
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8 // Downgrade to 1.8 for broader compatibility
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8' // Match Java 1.8 for consistency with Flutter
+    }
+
     lintOptions {
         disable 'InvalidPackage'
     }
@@ -49,5 +59,7 @@ kotlin {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version" // Use jdk8 for 1.8 compatibility
+    implementation 'androidx.annotation:annotation:1.7.0' // Common dependency for Android
+    implementation 'io.flutter:flutter_embedding_release:1.0.0' // Required for Flutter V2 embedding
 }
