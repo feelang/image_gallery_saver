@@ -2,13 +2,13 @@ group 'com.example.imagegallerysaver'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '2.0.21'
+    ext.kotlin_version = '1.9.20'
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.0'
+        classpath 'com.android.tools.build:gradle:8.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -61,5 +61,4 @@ kotlin {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version" // Use jdk8 for 1.8 compatibility
     implementation 'androidx.annotation:annotation:1.7.0' // Common dependency for Android
-    implementation 'io.flutter:flutter_embedding_release:1.0.0' // Required for Flutter V2 embedding
 }
